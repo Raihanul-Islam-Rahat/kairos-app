@@ -53,13 +53,11 @@ export default function KairosDashboard() {
         console.warn('User not logged in, skipping Supabase input insert.');
       }
 
-
       // Step 2: Call OpenAI API
-      // This key should NOT be NEXT_PUBLIC_ and is ideally used in a Vercel Serverless Function (API route)
-      // For now, it remains as is, relying on Next.js server-side rendering or build-time access
-      const openaiApiKey = process.env.OPENAI_API_KEY; 
+      // Changed to NEXT_PUBLIC_ to be accessible on client-side
+      const openaiApiKey = process.env.NEXT_PUBLIC_OPENAI_API_KEY; 
       if (!openaiApiKey) {
-        console.error('OPENAI_API_KEY is not set in environment variables. Ensure it is not prefixed with NEXT_PUBLIC_');
+        console.error('OPENAI_API_KEY is not set in environment variables. Ensure it is prefixed with NEXT_PUBLIC_');
         setSolution('Configuration Error: OpenAI API key not found.');
         setLoading(false); // Stop loading if API key is missing
         return;
